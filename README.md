@@ -11,20 +11,20 @@ Estimation of Distribution Algorithms (EDAs) are optimization algorithms that us
 ## How does EDA work?
 
 1. **Guessing**: The algorithm makes an initial guess about a potential solution.
-2. **Checking**: It evaluates the quality of this solution. Using a fitness function.
-3. **Learning**: If the solution is good, it updates its knowledge to remember what worked well and .
-4. **Trying Again**: The algorithm uses this information to generate a new generation which is assumed to be atleast equally perform with the previous generations.
+2. **Checking**: It evaluates the quality of this solution using a fitness function.
+3. **Learning**: If the solution is good, it updates its knowledge to remember what worked well.
+4. **Trying Again**: The algorithm uses this information to generate a new generation which is assumed to perform at least equally well as the previous generations.
 
 ## Types of EDAs
 
 ### 1. Univariate EDAs
 
-- **Definition**: Univariate EDAs focus on evaluating one variable (or component) at a time, treating each variable independently.
+- **Definition**: Univariate EDAs focus on evaluating one variable (or component) at a time, treating each variable independently. Therefore, univariate EDAs rely only on univariate statistics, and multivariate distributions must be factorized as the product of (N) univariate probability distributions.
 
-- **Process**:
-    - **Exploration**: These algorithms assess each variable independently to determine its contribution to the overall solution. One variable does not contribute to or affect any other.
-    - **Fitness Evaluation**: The fitness of each variable is evaluated separately, without considering interactions with other variables.
-    - **Learning and Updating**: The algorithm updates its probabilistic model based on the fitness evaluations of individual variables, refining its understanding to improve future generations of solutions.
+- **Types of Univariate EDAs**:
+    - **Univariate Marginal Distribution Algorithm (UMDA)**: Generates the next population by calculating the mean of the selected individuals from the current population.
+    - **Population-Based Incremental Learning (PBIL)**: Incorporates a learning rate to update the mean of the selected individuals, balancing exploration and exploitation.
+    - **Compact Genetic Algorithm (CGA)**: Utilizes a probability vector to represent the population and updates it based on the performance of selected individuals, also considering the learning rate.
 
 - **Example**:
     - In the context of the Traveling Salesman Problem (TSP), a univariate EDA would evaluate the distance between individual cities one at a time, without considering the overall route. For example, it would assess the distance from iCog Lab to Mexico, then from Mexico to 4 Kilo, and so on, independently. The distance between iCog Lab and Mexico does not contribute to the distance between Mexico and 4 Kilo.
@@ -37,13 +37,16 @@ Univariate EDAs are effective for simpler optimization problems where variable i
 
 ### 2. Multivariate EDAs
 
-- **Definition**: Multivariate EDAs evaluate multiple variables (or components) simultaneously, considering their interactions and dependencies to find optimal solutions.
+- **Definition**: Multivariate EDAs evaluate multiple variables (or components) simultaneously, considering their interactions and dependencies to find optimal solutions. Multivariate distributions are usually represented as probabilistic graphical models (graphs), in which edges denote statistical dependencies (or conditional probabilities) and vertices denote variables.
 
-- **Process**:
-    - **Exploration**: These algorithms explore combinations of variables to identify interactions that lead to better solutions. Unlike univariate EDAs, multivariate EDAs do not treat variables independently but rather evaluate them in the context of other variables.
-    - **Fitness Evaluation**: The fitness of a variable is assessed based on its interaction with other variables. This holistic approach allows the algorithm to capture complex relationships and dependencies between variables.
-    - **Learning and Updating**: The algorithm updates its probabilistic model based on the fitness evaluations, refining its understanding of variable interactions to improve future generations of solutions.
+- **Types of Multivariate EDAs**:
+    - **Extended Compact Genetic Algorithm (eCGA)**: Utilizes a compact representation of the population and models dependencies between variables using a probabilistic model. It extends the compact genetic algorithm by incorporating linkage learning to identify and exploit variable interactions.
+    - **Bayesian Optimization Algorithm (BOA)**: Employs Bayesian networks to model the dependencies between variables. By sampling from these networks, BOA generates new solutions that account for complex interactions, leading to more robust optimization.
+    - **Factorized Distribution Algorithm (FDA)**: Decomposes the problem into smaller subproblems by factorizing the joint probability distribution. This approach allows FDA to efficiently model and optimize variable interactions.
+    - **Learning Factorized Distribution Algorithm (LFDA)**: An extension of FDA that incorporates learning mechanisms to improve the factorization process. LFDA adapts the factorization based on the observed data, enhancing the optimization performance.
+    - **Dependency Structure Matrix Genetic Algorithm (DSMGA)**: Uses a dependency structure matrix to capture and exploit variable dependencies. DSMGA identifies and preserves important variable interactions, leading to more effective optimization.
 
+Multivariate EDAs leverage these advanced models to capture and utilize variable dependencies, providing powerful tools for solving complex optimization problems.
 - **Example**:
     - In iCog Labs, a multivariate EDA would evaluate the entire set of robotic components by considering the interactions between different parts. For instance, it would assess the combination of sensors, actuators, and control algorithms collectively, taking into account the overall performance and efficiency of the robot rather than evaluating each component independently.
 
@@ -72,4 +75,3 @@ Estimation of Distribution Algorithms (EDAs) are powerful tools for optimization
 ## References
 
 - [Estimation of Distribution Algorithms](https://en.wikipedia.org/wiki/Estimation_of_distribution_algorithm)
-
